@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Flashback</title>
+	<link rel="stylesheet" href="index.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
+    <script type="text/javascript" src='activity.js'></script>
+</head>
+<body>
+	<div id="app"></div>
+	<h1 class="header"> you are a god. </h1>
+
+	<ul>
+		<li category="feature"> You will be rich.</li>
+		<li category="feature"> You will fuck bitches, git money</li>
+	</ul>
+
+	<button id="one">Button 1</button>
+	<button id="two">Button 2</button>
+
+	<button id="theme">Change theme</button>
+
+	<script type='text/babel'>
+		var App = function() {
+			return (
+				<div className='App'>
+					<h1 className='title'>
+						Flashback
+					</h1>
+					<p className='sub-title'>
+						An interactive flashcard app.
+					</p>
+					<div className="card-list">
+						{Card()}
+					</div>
+				</div>
+			);
+		};
+
+		var Card = function() {
+			return (
+				<div className='Card -front'>
+					<div className="front">
+						<h3 className='question'>
+							React was created at ___________.
+						</h3>
+						<p className='hint'>
+							<span>Hint:</span> This company's site is known for being written in PHP.
+						</p>
+					</div>
+				</div>
+			);
+		};
+
+		ReactDOM.render(App(), document.getElementById('app'));
+	</script>
+
+</body>
+	<script type="text/javascript" src="handlers.js"></script>
+</html>

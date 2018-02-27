@@ -14,8 +14,10 @@ document.getElementsByTagName('button')[0].addEventListener('click', function(r)
 function getUser(name) {
 	// makes the GET request to github 
 	fetch('https://api.github.com/users/' + name)
+
 	// the above data gets passed into the bottom then promise as r
 	.then(function(r) {
+
 		// r gets rendered in json and returned to then be passed into promise below as j
 		return r.json();
 	})
@@ -39,9 +41,27 @@ function assignValues() {
 	document.getElementById('count').innerText = 'Followers: ' + response.followers;
 };
 
+// gets followers of inputted username, and returns as json. 
+// 
 function getFollowers(url) {
 	fetch(url)
-	.then(function(r) {
-		
+		.then(function(r) {
+			return r.json();
 	})
+		.then(function(f){
+			followers = f;
+			console.log(f)
+			listFollowers();
+		});
+	// inserts it into DOM
+function listFollowers() {
+	followers.forEach(function(f) {
+		var li = document.createElement('li');
+		li.innerHTML = '<a href="' + f.html_url + '">'
+		+ '<img src="' + f.avatar_url + '" alt="' + f.login + '"/>'
+		+ '</a>';
+		document.getElementById('list').appendChild(li);
+	});
+}
+
 }

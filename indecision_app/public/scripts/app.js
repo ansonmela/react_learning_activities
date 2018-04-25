@@ -20,19 +20,19 @@ var template = React.createElement(
 		null,
 		app.title
 	),
+	app.subtitle && React.createElement(
+		"p",
+		null,
+		app.subtitle
+	),
 	React.createElement(
 		"p",
 		null,
-		"app.subtitle"
-	) && app.subtitle,
+		app.options.length > 0 ? 'Here are your options' : 'No options'
+	),
 	React.createElement(
 		"ol",
 		null,
-		app.options.length > 0 ? React.createElement(
-			"li",
-			null,
-			app.options
-		) : "No options",
 		React.createElement(
 			"li",
 			null,
@@ -46,22 +46,11 @@ var template = React.createElement(
 	)
 );
 
-var user = {
-	name: "Anson",
-	age: 24,
-	location: 'Raleigh'
-};
+var count = 0;
 
-function getLocation(location) {
-	if (location) {
-		return React.createElement(
-			"p",
-			null,
-			"Location: ",
-			location
-		);
-	}
-}
+var addOne = function addOne() {
+	console.log('addOne');
+};
 
 var templateTwo = React.createElement(
 	"div",
@@ -69,16 +58,17 @@ var templateTwo = React.createElement(
 	React.createElement(
 		"h1",
 		null,
-		user.name ? user.name : 'Anonymous'
+		"Count: ",
+		count
 	),
-	user.age && user.age >= 18 && React.createElement(
-		"p",
-		null,
-		"Age: ",
-		user.age
-	),
-	getLocation(user.location)
+	React.createElement(
+		"button",
+		{ onClick: addOne },
+		"+1"
+	)
 );
+
+console.log(templateTwo);
 
 var appRoot = document.getElementById('app');
 var appRootTwo = document.getElementById('app2');

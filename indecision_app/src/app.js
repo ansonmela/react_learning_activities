@@ -4,47 +4,41 @@ console.log("App.js is running");
 
 // wrapper div needed to render adjacent html tags into react DOM
 
-var app = {
+const app = {
 	title: "INDECISION",
 	subtitle: "decide here!",
 	options: ['One', 'Two']
 };
 
-var template = ( 
+const template = ( 
 	<div> 
 		<h1>{app.title}</h1> 
-		{(<p>app.subtitle</p>) && app.subtitle} 
+		{app.subtitle && <p>{app.subtitle}</p>}
+		<p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
 		<ol>
-		{app.options.length > 0 ? <li>{app.options}</li> : "No options"}
 			<li>Item one</li>
 			<li>Item two</li>
 		</ol>
 	</div>
 );
 
+let count = 0;
 
-var user = {
-	name: "Anson",
-	age: 24,
-	location: 'Raleigh'
+const addOne = () => {
+	console.log('addOne');
 };
 
-function getLocation(location) {
-	if (location) {
-		return <p>Location: {location}</p>;
-	}
-}
-
-var templateTwo = (
+const templateTwo = (
 	<div>
-		<h1>{user.name ? user.name : 'Anonymous'}</h1>
-		{(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-		{getLocation(user.location)}
+		<h1>Count: {count}</h1>
+		<button onClick={addOne}>+1</button>
 	</div>
 );
 
-var appRoot = document.getElementById('app');
-var appRootTwo = document.getElementById('app2');
+console.log(templateTwo);
+
+const appRoot = document.getElementById('app');
+const appRootTwo = document.getElementById('app2');
 
 ReactDOM.render(templateTwo, appRoot);
 

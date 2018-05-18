@@ -35,7 +35,7 @@ const minusOne = () => {
 };
 
 const reset = () => {
-	console.log('reset');
+	console.log('Reset');
 };
 
 

@@ -59,7 +59,7 @@ var minusOne = function minusOne() {
 };
 
 var reset = function reset() {
-	console.log('reset');
+	console.log('Reset');
 };
 
 var appRoot = document.getElementById('app');

@@ -1,4 +1,4 @@
-// arguments object - no longer bound with arrow functions
+ // arguments object - no longer bound with arrow functions
 const add = (a, b) => {
 	// console.log(arguments);
 	return a + b;

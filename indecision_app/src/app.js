@@ -1,64 +1,114 @@
-console.log("App.js is running");
-
-// JSX - JavaScript XML
-
-// wrapper div needed to render adjacent html tags into react DOM
-
-const app = {
-	title: "INDECISION",
-	subtitle: "decide here!",
-	options: ['One', 'Two']
+const obj = {
+	name: 'Vikram',
+	getName() {
+		return this.name;
+	}
 };
 
-const template = ( 
-	<div> 
-		<h1>{app.title}</h1> 
-		{app.subtitle && <p>{app.subtitle}</p>}
-		<p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-		<ol>
-			<li>Item one</li>
-			<li>Item two</li>
-		</ol>
-	</div>
-);
+const getName = obj.getName.bind(obj);
 
-let count = 0;
+console.log(getName());
 
-const addOne = () => {
-	count++;
-	console.log('addOne', count);
-	renderCounterApp();
-};
-
-const minusOne = () => {
-	console.log('minusOne');
-};
-
-const reset = () => {
-	console.log('Reset');
-};
+class IndecisionApp extends React.Component {
+	render() {
+		const title = 'Indecision';
+		const subtitle = 'Put your life in the hands of a computer';
+		const options = ['Thing 1', 'Thing 2', 'Thing 3'];
+		return (
+			<div>
+				<Header title={title} subtitle={subtitle}/>
+				<Action />
+				<Options options={options}/>
+				<AddOptions />
+			</div>
+			);
+	}
+}
 
 
 
+class Header extends React.Component {
+	render() {
+		return (
+			<div>
+				<h1>{this.props.title}</h1>
+				<h2>{this.props.subtitle}</h2>
+			</div>
+			);
+	}
+}
 
-const appRoot = document.getElementById('app');
-const appRootTwo = document.getElementById('app2');
+class Options extends React.Component {
+	constructor(props) {
+		super(props);
+		this.removeAll = this.removeAll.bind(this);
+	}
+
+	removeAll() {
+		console.log(this.props.options);
+		// alert('removeAll');
+	}
+	render() {
+		return (
+			<div>
+				<button onClick={this.removeAll}>Remove All</button>
+				{
+					this.props.options.map((option) => <Option key={option} optionText={option}/>) 
+				}
+			</div>
+		);
+	}
+}
+
+class Action extends React.Component {
+	handlePick() {
+		alert('handlePick');
+	}
+	render() {
+		return (
+			<div>
+				<button onClick={this.handlePick}>What Should I do?</button>
+			</div>
+			);
+	}
+}
 
 
 
-ReactDOM.render(template, appRootTwo);
+class Option extends React.Component {
 
-const renderCounterApp = () => {
-	const templateTwo = (
-		<div>
-			<h1>Count: {count}</h1>
-			<button onClick={addOne}>+1</button>
-			<button onClick={minusOne}>-1</button>
-			<button onClick={reset}>reset</button>
-		</div>
-	);
+	render() {
+		return (
+			<div>
+			Option: {this.props.optionText}
+			</div>
+			);
+	}
+}
 
-	ReactDOM.render(templateTwo, appRoot);
-};
+class AddOptions extends React.Component {
+	handleAddOption(e) {
+		e.preventDefault();
 
-renderCounterApp();
+		const option = e.target.elements.option.value.trim();
+
+		if (option) {
+			alert(option);
+		}
+	}
+	render() {
+		return (
+			<div>
+				<form onSubmit={this.handleAddOption}>
+					<input type="text" name="option" />
+					<button>Add Option</button>
+				</form>
+			</div>
+			);
+	}
+}
+
+
+
+
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));

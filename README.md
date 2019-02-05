@@ -7,7 +7,7 @@ the framework in my current side project, myFit, and other side projects to come
 
 Babel compiler command:
 
-babel src/app.js --out-file=public/scripts/app.js --presets=env,react
+babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
 
 Fire Server command:
 
